@@ -11,7 +11,7 @@ const Form = (props) => {
 
 
 
-  const { cantidad, guardarCantidad, plazo, guardarPlazo, guardarTotal } = props;
+  const { cantidad, guardarCantidad, plazo, guardarPlazo, guardarTotal,guardarCargando } = props;
   const [error, guardarError] = useState(false);
 
   const leerCantidad = e => {
@@ -28,12 +28,25 @@ const Form = (props) => {
     if (cantidad === 0 || plazo === "") {
       guardarError(true);
       return;
+
+    
     }
 
     guardarError(false);
+//Habilita Spinner
+      guardarCargando(true)
 
-   const totalgeneral =  calcularTotal(cantidad,plazo);
-   guardarTotal(totalgeneral);
+
+    setTimeout(() => {
+
+      const totalgeneral =  calcularTotal(cantidad,plazo);
+        guardarTotal(totalgeneral);
+        guardarCargando(false)
+    }, 3000);
+
+   
+
+
   };
 
   return (
