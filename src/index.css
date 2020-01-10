@@ -59,3 +59,7 @@ input[type="submit"]:disabled{
 .resultado p {
   margin: 0;
 }
+.text-center{
+
+  text-align: center;
+}

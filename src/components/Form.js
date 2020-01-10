@@ -1,7 +1,17 @@
 import React, { Fragment, useState } from "react";
+import {calcularTotal} from '../helpers';
 
-const Form = ({ cantidad, guardarCantidad, plazo, guardarPlazo }) => {
+
+
+
+
+const Form = (props) => {
   //Define el state
+
+
+
+
+  const { cantidad, guardarCantidad, plazo, guardarPlazo, guardarTotal } = props;
   const [error, guardarError] = useState(false);
 
   const leerCantidad = e => {
@@ -21,6 +31,9 @@ const Form = ({ cantidad, guardarCantidad, plazo, guardarPlazo }) => {
     }
 
     guardarError(false);
+
+   const totalgeneral =  calcularTotal(cantidad,plazo);
+   guardarTotal(totalgeneral);
   };
 
   return (
@@ -56,6 +69,7 @@ const Form = ({ cantidad, guardarCantidad, plazo, guardarPlazo }) => {
           </div>
         </div>
       </form>
+    
 
       {error ? (
         <p className="error"> Todos los campos son obligatorios</p>
